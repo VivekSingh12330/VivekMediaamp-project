@@ -54,7 +54,7 @@ A real-world, end-to-end DevOps project simulating production-level infrastructu
 ## 📁 Project Folder Structure
 
 ```
-/home/ubuntu/flask_project/
+/home/ubuntuuser/flask_project/
 ├── flask_env/
 │   ├── app.py
 │   ├── compute.sh
@@ -137,7 +137,7 @@ sudo apt update && sudo apt install cron -y
 ```
 ---
 ## 📝 Step 6: Create Crontab Script
-- Path: /home/ubuntu/flask_project/flask_env/compute.sh
+- Path: /home/ubuntuuser/flask_project/flask_env/compute.sh
 
 ```
 #!/bin/bash
@@ -146,7 +146,7 @@ curl -X GET http://127.0.0.1:5000/compute >> $LOG_FILE 2>&1
 ```
 - Make Executable:
 ```
-chmod +x /home/ubuntu/flask_project/flask_env/compute.sh
+chmod +x /home/ubuntuuser/flask_project/flask_env/compute.sh
 ```
 
 1.✅ Schedule in Crontab
@@ -157,7 +157,7 @@ crontab -e
 
 - Add:
 ```
-* * * * * /home/ubuntu/flask_project/flask_env/compute.sh
+* * * * * /home/ubuntuuser/flask_project/flask_env/compute.sh
 ```
 
 - Verify:
