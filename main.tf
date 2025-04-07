@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url      = "https://192.168.0.11:8006/api2/json"
+  pm_api_url      = "https://192.168.0.10:8006/api2/json"
   pm_user         = "proxmox_username"
   pm_password     = "Proxmox_password"
   pm_tls_insecure = true
@@ -41,7 +41,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
     slot     = "scsi0"
     type     = "disk"
     storage  = "local-lvm"
-    size     = "20G"
+    size     = "30G"
     iothread = true
   }
 
