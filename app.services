@@ -3,11 +3,11 @@ Description=Gunicorn service for Flask application
 After=network.target
 
 [Service]
-User=ubuntu
+User=ubuntuuser
 Group=www-data
-WorkingDirectory=/home/ubuntu/flask_project
-Environment="PATH=/home/ubuntu/flask_project/venv/bin"
-ExecStart=/home/ubuntu/flask_project/venv/bin/gunicorn --workers 3 --bind unix:myapp.sock -m 007 wsgi:app
+WorkingDirectory=/home/ubuntuuser/flask_project
+Environment="PATH=/home/ubuntuuser/flask_project/venv/bin"
+ExecStart=/home/ubuntuuser/flask_project/venv/bin/gunicorn --workers 3 --bind unix:myapp.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
