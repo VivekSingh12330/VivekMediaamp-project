@@ -119,9 +119,11 @@ def compute():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+```
 
+---
 ## ⏰ Step 5: Automate Endpoint Hit Using Crontab
-✅ Verify Cron is Installed & Active
+1.✅ Verify Cron is Installed & Active
 ```
 sudo systemctl status cron
 # If inactive
@@ -129,81 +131,73 @@ sudo systemctl start cron
 sudo systemctl enable cron
 ```
 
-## ✅ Install If Not Present
+2.✅ Install If Not Present
 ```
 sudo apt update && sudo apt install cron -y
 ```
-
+---
 ## 📝 Step 6: Create Crontab Script
-Path: /home/ubuntu/flask_app/flask_env/compute.sh
+- Path: /home/ubuntu/flask_app/flask_env/compute.sh
 
 ```
 #!/bin/bash
 LOG_FILE="/var/log/compute_cron.log"
 curl -X GET http://127.0.0.1:5000/compute >> $LOG_FILE 2>&1
 ```
-
-# Make Executable:
-
+- Make Executable:
 ```
 chmod +x /home/ubuntu/flask_app/flask_env/compute.sh
 ```
 
-✅ Schedule in Crontab
-Open crontab:
+1.✅ Schedule in Crontab
+- Open crontab:
 ```
 crontab -e
 ```
 
-Add:
+- Add:
 ```
 * * * * * /home/ubuntu/flask_app/flask_env/compute.sh
 ```
 
-Verify:
+- Verify:
 ```
 crontab -l
 ```
-
+---
 ## 📄 Logs & Output
-Check response logs:
+- Check response logs:
 
 ```
 cat /var/log/compute_cron.log
 ```
 
-Sample Output:
+- Sample Output:
 ```
 {
   "message": "Computation complete!",
   "status": "success"
 }
 ```
-
+--- 
 ## 📈 Jenkins Integration (CI/CD)
-Installed Jenkins on Ubuntu VM
+- Installed Jenkins on Ubuntu VM
+- Installed plugins:
+-- Git
+-- Pipeline
+-- Docker
 
-Installed plugins:
+- Configured a basic pipeline for Flask app (initial stage only)
 
-Git
-
-Pipeline
-
-Docker
-
-Configured a basic pipeline for Flask app (initial stage only)
-
-🔴 Note: Jenkinsfile not fully completed due to time and environment limitations.
-
+# 🔴 Note: Jenkinsfile not fully completed due to time and environment limitations.
+---
 ## 📊 Monitoring with Prometheus
-Installed Prometheus on LXC container
+- Installed Prometheus on LXC container
+- Configured Flask VM IP as a target
+- Installed node_exporter for host metrics
 
-Configured Flask VM IP as a target
-
-Installed node_exporter for host metrics
-
-✅ Real-time metrics visualized on Prometheus dashboard
-
+- ✅ Real-time metrics visualized on Prometheus dashboard
+---
 ## 🧪 Errors Faced & Solutions
 ```
 Issue	Cause	Fix / Note
@@ -211,41 +205,29 @@ Jenkins service failed to start	Low resources or port conflict	Moved Jenkins to 
 Jenkins deployment failed	Incomplete Jenkinsfile, missing Docker	Partial CI/CD implemented
 Prometheus blank page	Misconfigured target	Fixed using correct port and exporter
 ```
-
+---
 ## 🧹 Limitations & Future Enhancements
-Jenkins deployment is partial — Docker setup and complete pipeline needed
-
-Proxmox setup was constrained due to hardware
-
-Application logic was minimal (for demo only)
-
-Dashboard integration (Grafana) can be added
-
+- Jenkins deployment is partial — Docker setup and complete pipeline needed
+- Proxmox setup was constrained due to hardware
+- Application logic was minimal (for demo only)
+- Dashboard integration (Grafana) can be added
+---
 ## ✅ What Was Accomplished
-Provisioned VM and LXC using Terraform
-
-Configured NAT-based network on Proxmox
-
-Deployed Flask App in VM
-
-Hit endpoint periodically via Cron
-
-Partially built CI/CD Pipeline with Jenkins
-
-Collected system metrics using Prometheus
+- Provisioned VM and LXC using Terraform
+- Configured NAT-based network on Proxmox
+- Deployed Flask App in VM
+- Hit endpoint periodically via Cron
+- Partially built CI/CD Pipeline with Jenkins
+- Collected system metrics using Prometheus
 
 🎯 Conclusion
 This DevOps internship challenge simulated a real-world DevOps lifecycle using open-source tooling. Despite hardware limitations and time constraints, key principles of automation, deployment, monitoring, and observability were successfully demonstrated.
 
 The learning outcomes included:
-
-Understanding of Proxmox provisioning and networking
-
-Hands-on use of Terraform, Jenkins, and Prometheus
-
-Debugging and system administration under realistic limitations
-
-Building a CI/CD + Monitoring workflow end-to-end
+- Understanding of Proxmox provisioning and networking
+- Hands-on use of Terraform, Jenkins, and Prometheus
+- Debugging and system administration under realistic limitations
+- Building a CI/CD + Monitoring workflow end-to-end
 
 With foundational components now working, the project can be easily extended to include Docker-based deployment, Jenkinsfile-based automation, Grafana dashboards, and real-time alerts.
 
