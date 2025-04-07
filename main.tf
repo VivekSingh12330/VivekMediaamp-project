@@ -11,11 +11,14 @@ terraform {
 
 provider "proxmox" {
   pm_api_url      = "https://192.168.0.10:8006/api2/json"
-  pm_user         = "proxmox_username"
-  pm_password     = "Proxmox_password"
+  pm_user         = "proxmox_username"      # Change to your Proxmox username
+  pm_password     = "Proxmox_password"      # Change to your Proxmox password
   pm_tls_insecure = true
 }
 
+# ----------------------
+# Ubuntu 22.04 VM (QEMU)
+# ----------------------
 resource "proxmox_vm_qemu" "ubuntu_vm" {
   name        = "ubuntu-22.04"
   target_node = "proxmox"
@@ -45,10 +48,10 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
     iothread = true
   }
 
-  ipconfig0  = "ip=10.0.0.100/24,gw=192.168.0.1"
-  ciuser     = "username"
-  cipassword = "password"
-  sshkeys    = file("~/.ssh/id_rsa.pub")
+  ipconfig0  = "ip=10.0.0.150/24,gw=192.168.0.1"   # VM static IP and gateway
+  ciuser     = "ubuntuuser"                        # Change to your VM cloud-init user
+  cipassword = "ubuntu123"                         # Change password for that user
+  sshkeys    = file("~/.ssh/id_rsa.pub")           # SSH key for login
 
   serial {
     id   = 0
@@ -61,14 +64,14 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
 }
 
 # ----------------------
-# Ubuntu 22.04 LXC
+# Ubuntu 22.04 LXC Container
 # ----------------------
 resource "proxmox_lxc" "ubuntu_container" {
   hostname    = "ubuntu-lxc"
-  vmid        = 100
+  vmid        = 200                                 # Unique VMID
   target_node = "proxmox"
   ostemplate  = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-  password    = "root123"
+  password    = "123"                           # Root password for container
 
   cores        = 1
   memory       = 512
@@ -83,8 +86,8 @@ resource "proxmox_lxc" "ubuntu_container" {
   network {
     name   = "eth0"
     bridge = "vmbr1"
-    ip     = "10.0.0.101/24"
-    gw     = "10.0.0.1"
+    ip     = "10.0.0.151/24"                        # LXC container IP
+    gw     = "192.168.0.1"                          # Gateway
   }
 
   features {
@@ -93,4 +96,3 @@ resource "proxmox_lxc" "ubuntu_container" {
 
   start = true
 }
-
