@@ -50,8 +50,9 @@ A real-world, end-to-end DevOps project simulating production-level infrastructu
 | **Flask**         | Web framework for the sample application          |
 | **Crontab**       | Job scheduler for periodic tasks                  |
 
-## 📁 Project Folder Structure
 ---
+## 📁 Project Folder Structure
+
 ```
 /home/ubuntu/flask_app/
 ├── flask_env/
