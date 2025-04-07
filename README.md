@@ -1,4 +1,4 @@
-# 🚀 DevOps Internship Challenge – Final Report
+# 🚀 DevOps Internship Challenge 
 
 ---
 
@@ -52,6 +52,7 @@ A real-world, end-to-end DevOps project simulating production-level infrastructu
 
 ## 📁 Project Folder Structure
 ---
+```
 /home/ubuntu/flask_app/
 ├── flask_env/
 │   ├── app.py
@@ -60,6 +61,7 @@ A real-world, end-to-end DevOps project simulating production-level infrastructu
 ├── flask.log
 ├── compute_cron.log
 └── README.md
+```
 ---
 
 ## 🧱 Step 1: Proxmox Environment Setup
