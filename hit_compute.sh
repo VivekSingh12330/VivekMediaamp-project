@@ -1,8 +1,11 @@
 #!/bin/bash
 
-# Timestamp for logging
-echo "[$(date)] Hitting /compute endpoint..." >> /home/ubuntu/cron.log
+LOG_FILE="/home/ubuntu/cron.log"
+ENDPOINT="http://127.0.0.1:5000/compute"
 
-# Actual request
-curl -s http://127.0.0.1:5000/compute >> /home/ubuntu/cron.log
-echo "" >> /home/ubuntu/cron.log
+{
+    echo "[$(date)] Hitting /compute endpoint..."
+    RESPONSE=$(curl -s -w "\nHTTP Status: %{http_code}\n" "$ENDPOINT")
+    echo "$RESPONSE"
+    echo ""
+} >> "$LOG_FILE"
