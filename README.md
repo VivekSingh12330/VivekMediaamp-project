@@ -200,10 +200,11 @@ cat /var/log/compute_cron.log
 ---
 ## 🧪 Errors Faced & Solutions
 ```
-Issue	Cause	Fix / Note
-Jenkins service failed to start	Low resources or port conflict	Moved Jenkins to VM on VMware
-Jenkins deployment failed	Incomplete Jenkinsfile, missing Docker	Partial CI/CD implemented
-Prometheus blank page	Misconfigured target	Fixed using correct port and exporter
+| Issue                        | Cause                                 | Fix / Note                                    |
+|-----------------------------|----------------------------------------|-----------------------------------------------|
+| Jenkins service failed to start | Low resources or port conflict         | Moved Jenkins to VM on VMware                 |
+| Jenkins deployment failed       | Incomplete Jenkinsfile, missing Docker| Partial CI/CD implemented                     |
+| Prometheus blank page           | Misconfigured target                  | Fixed using correct port and node exporter    |
 ```
 ---
 ## 🧹 Limitations & Future Enhancements
