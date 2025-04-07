@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FILE="/home/ubuntu/cron.log"
+LOG_FILE="/home/ubuntuuser/cron.log"
 ENDPOINT="http://127.0.0.1:5000/compute"
 
 {
